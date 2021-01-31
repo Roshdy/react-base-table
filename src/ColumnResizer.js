@@ -88,7 +88,7 @@ class ColumnResizer extends React.PureComponent {
   }
 
   render() {
-    const { style, column, onResizeStart, onResize, onResizeStop, minWidth, ...rest } = this.props;
+    const { style, column, onResizeStart, onResize, onResizeStop, minWidth, rtl, ...rest } = this.props;
 
     return (
       <div
@@ -105,7 +105,8 @@ class ColumnResizer extends React.PureComponent {
           position: 'absolute',
           top: 0,
           bottom: 0,
-          right: 0,
+          right: rtl ? 'auto' : 0,
+          left: rtl ? 0 : 'auto',
           cursor: 'col-resize',
           ...style,
         }}
@@ -183,9 +184,9 @@ class ColumnResizer extends React.PureComponent {
       return;
     }
 
-    const { column, minWidth: MIN_WIDTH } = this.props;
+    const { column, minWidth: MIN_WIDTH, rtl } = this.props;
     const { width, maxWidth, minWidth = MIN_WIDTH } = column;
-    const movedX = x - this.lastX;
+    const movedX = rtl ? x + this.lastX : x - this.lastX;
     if (!movedX) return;
 
     this.width = this.width + movedX;

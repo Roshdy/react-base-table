@@ -234,6 +234,10 @@ declare module 'react-base-table' {
      */
     disabled?: boolean;
     /**
+     * Whether the table is RTL
+     */
+    rtl?: boolean;
+    /**
      * Custom renderer on top of the table component
      */
     overlayRenderer?: CallOrReturn<React.ReactNode>;
